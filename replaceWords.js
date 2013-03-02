@@ -1,34 +1,53 @@
-(function($) {
+;(function() {
 
-	function buildRegex() {
-		var spellings = ['(E|e)nt', ['rep', 'ep'], ['ren', 'en', 'ern'], ['eur', 'er']];
-		//var endings = ['', 'ship', 'ial'];
-		var parts = [];
+var buildRegex = function () {
+	var spellings = ['(E|e)nt', ['rep', 'ep', 'erp'], ['ren', 'en', 'ern'], ['eur', 'er']];
+	//var endings = ['', 'ship', 'ial'];
+	var parts = [];
 
-		for (var i = 0; i < spellings.length; i++) {
-			if (spellings[i] instanceof Array) {
-				parts.push('(?:');
-					for (var j = 0; j < spellings[i].length; j++) {
-						parts.push(spellings[i][j]);
-						parts.push('|');
-					}
-					parts.pop();
-					parts.push(')');
-			} else { // String
-				parts.push(spellings[i]);
-			}
+	for (var i = 0; i < spellings.length; i++) {
+		if (spellings[i] instanceof Array) {
+			parts.push('(?:');
+				for (var j = 0; j < spellings[i].length; j++) {
+					parts.push(spellings[i][j]);
+					parts.push('|');
+				}
+				parts.pop();
+				parts.push(')');
+		} else { // String
+			parts.push(spellings[i]);
 		}
-
-		return new RegExp(parts.join(''), 'g');
 	}
+
+	return new RegExp(parts.join(''), 'g');
+}
 
 var regex = buildRegex();
 
-function changeStuff(e) { 
-	$(this).val($(this).val().replace(regex, "$1ntrepreneur"));
+var spellcheck = function (e) {
+	var target;
+	if (!e) var e = window.event;
+	if (e.target) target = e.target;
+	else if (e.srcElement) targ = e.srcElement;
+	if (target.nodeType == 3) // defeat Safari bug
+		target = target.parentNode;
+
+	target.value = target.value.replace(regex, "$1ntrepreneur");
 }
 
-$('input').on('change', changeStuff);
-$('textarea').on('change', changeStuff);
+var enable = function (els) {
+	for(el in els) {
+		try {
+			els[el].addEventListener('change', spellcheck);
+		} catch (err) {}
+	}
+}
 
-})(jQuery);
+var setup = function () {
+	enable(document.getElementsByTagName('input'));
+	enable(document.getElementsByTagName('textarea'));
+}
+
+setup();
+
+})();
