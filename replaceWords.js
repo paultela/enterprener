@@ -27,7 +27,7 @@ var spellcheck = function (e) {
 	if (!e) var e = window.event;
 	if (e.target) target = e.target;
 	else if (e.srcElement) targ = e.srcElement;
-	if (target.nodeType == 3) // defeat Safari bug
+	if (target.nodeType == 3) // defeat Safari bug, in a Chrome extension.
 		target = target.parentNode;
 
 	target.value = target.value.replace(regex, "$1ntrepreneur");
