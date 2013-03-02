@@ -33,18 +33,9 @@ var spellcheck = function (e) {
 	target.value = target.value.replace(regex, "$1ntrepreneur");
 }
 
-var enable = function (els) {
-	for(el in els) {
-		try {
-			els[el].addEventListener('change', spellcheck);
-		} catch (err) {}
-	}
-}
-
 var setup = function () {
 	regex = buildRegex();
-	enable(document.getElementsByTagName('input'));
-	enable(document.getElementsByTagName('textarea'));
+	document.addEventListener('input', spellcheck);
 }
 
 var regex;
