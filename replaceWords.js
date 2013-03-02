@@ -35,7 +35,12 @@ var spellcheck = function (e) {
 
 var setup = function () {
 	regex = buildRegex();
-	document.addEventListener('input', spellcheck);
+	document.addEventListener('change', spellcheck);
+	/*
+	 * Eventually we'd like to bind to the input event, but as of right now that
+	 * jumps the cursor to the end of the line every time. Maybe this helps:
+	 * http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
+	 */
 }
 
 var regex;
