@@ -1,5 +1,6 @@
 {
-	"name": "Dan's App",
+	"name": "Enterprener",
+	"description": "Finds and corrects misspellings of entrepreneur, because no one can spell it.",
 	"version": "0.1",
 	"manifest_version": 2,
 

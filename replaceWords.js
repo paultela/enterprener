@@ -1,7 +1,7 @@
 (function($) {
 
 	function buildRegex() {
-		var spellings = ['(E|e)nt', ['rep', 'ep'], ['ren', 'en', 'ern'], ['eur', 'er']];
+		var spellings = ['(E|e)nt', ['rep', 'ep', 'erp'], ['ren', 'en', 'ern'], ['eur', 'er']];
 		//var endings = ['', 'ship', 'ial'];
 		var parts = [];
 
@@ -24,7 +24,7 @@
 
 var regex = buildRegex();
 
-function changeStuff(e) { 
+function changeStuff(e) {
 	$(this).val($(this).val().replace(regex, "$1ntrepreneur"));
 }
 
