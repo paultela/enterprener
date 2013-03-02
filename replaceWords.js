@@ -22,8 +22,6 @@ var buildRegex = function () {
 	return new RegExp(parts.join(''), 'g');
 }
 
-var regex = buildRegex();
-
 var spellcheck = function (e) {
 	var target;
 	if (!e) var e = window.event;
@@ -44,10 +42,12 @@ var enable = function (els) {
 }
 
 var setup = function () {
+	regex = buildRegex();
 	enable(document.getElementsByTagName('input'));
 	enable(document.getElementsByTagName('textarea'));
 }
 
+var regex;
 setup();
 
 })();
