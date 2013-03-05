@@ -26,7 +26,7 @@ var spellcheck = function (e) {
 
 	for (var i = 0; i < dictionary.length; i++) {
 		var exists = f.search(dictionary[i].word);
-		console.log(exists);
+
 		if (exists.length > 0) {
 			for (var j = 0; j < exists.length; j++) {
 				foundWords[exists[j]] = dictionary[i].correctTo;
