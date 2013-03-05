@@ -4,7 +4,12 @@ var dictionary = [{
 	id: 1,
 	word: "entrepreneur",
 	correctTo: "entrepreneur"
-}];
+}, {
+	id: 2,
+	word: "cloud",
+	correctTo: "Internet"
+}
+];
 
 var spellcheck = function (e) {
 	var target;
@@ -17,13 +22,14 @@ var spellcheck = function (e) {
 	// Split into words
 	var foundWords = target.value.split(/\b/);
 
-	var f = new Fuse(foundWords);
+	var f = new Fuse(foundWords, {threshold: 0.3});
 
-	for (var i = dictionary.length - 1; i >= 0; i--) {
+	for (var i = 0; i < dictionary.length; i++) {
 		var exists = f.search(dictionary[i].word);
+		console.log(exists);
 		if (exists.length > 0) {
-			for (var j = exists.length - 1; j >= 0; j--) {
-				foundWords[exists[j]] = dictionary[j].correctTo;
+			for (var j = 0; j < exists.length; j++) {
+				foundWords[exists[j]] = dictionary[i].correctTo;
 			}
 		}
 	}
