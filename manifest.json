@@ -1,13 +1,13 @@
 {
 	"name": "Enterprener",
 	"description": "Finds and corrects misspellings of entrepreneur, because no one can spell it.",
-	"version": "0.1",
+	"version": "0.1.1",
 	"manifest_version": 2,
 
 	"content_scripts": [
     	{
      	 "matches": ["<all_urls>"],
-      	 "js": ["replaceWords.js"]
+      	 "js": ["fuse.min.js", "replaceWords.js"]
     	}
   	]
 }
