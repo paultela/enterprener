@@ -11,6 +11,12 @@
     }
   ];
 
+  chrome.storage.sync.set({
+    dictionary: dict
+  }, function() {
+    return console.log("Synced dictionary");
+  });
+
   spellcheck = function(event) {
     var fuse, match, matches, target, term, words, _i, _j, _len, _len1;
     target = event.target;

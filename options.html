@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Enterprener Options</title>
+  <link href="http://paultela.com/wp-content/themes/traction/style.css" type="text/css" media="screen" rel="stylesheet">
+</head>
+
+<body>
+
+<h1>Your saved words</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Word</th>
+      <th>Correct To</th>
+    </tr>
+  </thead>
+  <tbody id="wordList">
+    
+  </tbody>
+</table>
+
+<form>
+  <label for="newWord">Word: </label>
+  <input type="text" id="newWord" name="newWord"/>
+  <br />
+  <label for="replaceWord">Correct To: </label>
+  <input type="text" id="replaceWord" name="replaceWord"/>
+  <br />
+  <input type="submit" id="addWordbutton" value="Add Word">
+</form>
+
+<br>
+<div id="status"></div>
+<button id="save">Save</button>
+<script type="text/javascript" src="options.js"></script>
+</body>
+
+</html>
