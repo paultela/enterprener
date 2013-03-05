@@ -1,49 +1,45 @@
 ;(function() {
 
-var buildRegex = function () {
-	var spellings = ['(E|e)nt', ['rep', 'ep', 'erp'], ['ren', 'en', 'ern'], ['eur', 'er']];
-	//var endings = ['', 'ship', 'ial'];
-	var parts = [];
-
-	for (var i = 0; i < spellings.length; i++) {
-		if (spellings[i] instanceof Array) {
-			parts.push('(?:');
-				for (var j = 0; j < spellings[i].length; j++) {
-					parts.push(spellings[i][j]);
-					parts.push('|');
-				}
-				parts.pop();
-				parts.push(')');
-		} else { // String
-			parts.push(spellings[i]);
-		}
-	}
-
-	return new RegExp(parts.join(''), 'g');
-}
+var dictionary = [{
+	id: 1,
+	word: "entrepreneur",
+	correctTo: "entrepreneur"
+}];
 
 var spellcheck = function (e) {
 	var target;
-	if (!e) var e = window.event;
+	if (!e) e = window.event;
 	if (e.target) target = e.target;
 	else if (e.srcElement) targ = e.srcElement;
 	if (target.nodeType == 3) // defeat Safari bug, in a Chrome extension.
 		target = target.parentNode;
 
-	target.value = target.value.replace(regex, "$1ntrepreneur");
-}
+	// Split into words
+	var foundWords = target.value.split(/\b/);
+
+	var f = new Fuse(foundWords);
+
+	for (var i = dictionary.length - 1; i >= 0; i--) {
+		var exists = f.search(dictionary[i].word);
+		if (exists.length > 0) {
+			for (var j = exists.length - 1; j >= 0; j--) {
+				foundWords[exists[j]] = dictionary[j].correctTo;
+			}
+		}
+	}
+
+	target.value = foundWords.join("");
+};
 
 var setup = function () {
-	regex = buildRegex();
 	document.addEventListener('change', spellcheck);
 	/*
 	 * Eventually we'd like to bind to the input event, but as of right now that
 	 * jumps the cursor to the end of the line every time. Maybe this helps:
 	 * http://stackoverflow.com/questions/512528/set-cursor-position-in-html-textbox
 	 */
-}
+};
 
-var regex;
 setup();
 
 })();
