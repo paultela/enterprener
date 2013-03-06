@@ -3,56 +3,31 @@
 <head>
 	<title>Enterprener Options</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" media="screen" href="assets/css/options.css" />
 </head>
-
 <body>
+	<div id="content">
+		<h1>Enterprener options</h1>
+		<h3>Saved words</h3>
+		<table>
+			<tbody id="dictionary">
+				<!--tr class="word" data-word="entrepreneur">
+					<td class="word-search">
+						<input type="text" placeholder="Correct this..." value="entrepreneur" />
+					</td>
+					<td class="word-correct">
+						<input type="text" placeholder="...to this" value="" />
+					</td>
+					<td>
+						<a class="btn-remove" href=""><i class="icon-remove"></i></a>
+					</td>
+				</tr-->
+			</tbody>
+		</table>
+	</div>
 
-<h1>Enterprener options</h1>
-
-<h3>Saved words</h3>
-
-<table>
-	<thead>
-		<tr>
-			<th></th>
-			<th>Word</th>
-			<th>Correct To</th>
-		</tr>
-	</thead>
-	<tbody id="wordList">
-		<tr>
-			<td><input type="text" placeholder="Correct spelling" /></td>
-			<td><input type="text" placeholder="Same word" /></td>
-		</tr>
-	</tbody>
-</table>
-
-<form>
-	<label for="newWord">Word: </label>
-	<input type="text" id="newWord" name="newWord"/>
-	<br />
-	<label for="replaceWord">Correct To: </label>
-	<input type="text" id="replaceWord" name="replaceWord"/>
-	<br />
-	<input type="submit" id="addWordbutton" value="Add Word">
-</form>
-
-<br>
-<div id="status"></div>
-<button id="save">Save</button>
-
-<script type="text/x-handlebars-template" id="template-tr">
-<tr>
-	<td><a href=""><i class="icon-remove-sign" /></a></td>
-	<td>{{search}}</td>
-	<td>{{correct}}</td>
-</tr>
-</script>
-
-<script src="assets/js/jquery.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="options.js"></script>
+	<script src="assets/js/jquery.js"></script>
+	<script src="options.js"></script>
 </body>
-
 </html>
