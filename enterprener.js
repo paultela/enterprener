@@ -2,20 +2,7 @@
 (function() {
   var dict, spellcheck;
 
-  dict = [
-    {
-      search: 'entrepreneur'
-    }, {
-      search: 'cloud',
-      correct: 'Internet'
-    }
-  ];
-
-  chrome.storage.sync.set({
-    dictionary: dict
-  }, function() {
-    return console.log("Synced dictionary");
-  });
+  dict = [];
 
   spellcheck = function(event) {
     var fuse, match, matches, target, term, words, _i, _j, _len, _len1;
@@ -34,6 +21,10 @@
     }
     return target.value = words.join('');
   };
+
+  chrome.storage.sync.get(function(res) {
+    return dict = res.dictionary;
+  });
 
   document.addEventListener('change', spellcheck);
 

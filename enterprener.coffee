@@ -1,9 +1,4 @@
-dict = [
-	search: 'entrepreneur'
-,
-	search: 'cloud'
-	correct: 'Internet'
-]
+dict = []
 
 
 spellcheck = (event) ->
@@ -19,6 +14,8 @@ spellcheck = (event) ->
 
 	target.value = words.join ''
 
+chrome.storage.sync.get (res) ->
+	dict = res.dictionary
 
 document.addEventListener 'change', spellcheck
 ###
