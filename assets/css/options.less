@@ -1,0 +1,60 @@
+@import "normalize.less";
+
+body {
+	font-family: 'Lucida Grande', 'Arial', sans-serif;
+	font-size: 12px;
+}
+
+#content {
+}
+
+table {
+	//width: 100%;
+	border: 1px solid #bbb;
+}
+
+td {
+	padding: 5px 0 5px 10px;
+
+	&:last-child {
+		padding-right: 10px;
+	}
+}
+
+.word {
+
+	&:hover {
+		background: #eee;
+
+		.btn-remove {
+			opacity: 1;
+		}
+	}
+
+	&.editing {
+		background: #e0e0e0;
+
+		input {
+			background: white;
+			border-color: #bbb;
+
+			&:focus {
+				border-color: #4995e6;
+			}
+		}
+	}
+
+	input {
+		border: 1px solid rgba(0, 0, 0, 0);
+		outline: 0;
+		background: inherit;
+		padding: 3px;
+		width: 100px;
+	}
+}
+
+.btn-remove {
+	text-decoration: none;
+	color: #666;
+	opacity: 0;
+}
