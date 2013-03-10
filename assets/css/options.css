@@ -36,9 +36,12 @@ button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}
 textarea{overflow:auto;vertical-align:top;}
 table{border-collapse:collapse;border-spacing:0;}
 body{font-family:'Lucida Grande','Arial',sans-serif;font-size:12px;}
-table{border:1px solid #bbb;}
+#content{width:267px;margin:20px auto;}
+.test{margin:15px 0;}.test label,.test input{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;display:inline-block;width:100%;padding:5px;}
+table{border:1px solid #bbb;margin:15px 0;}
 td{padding:5px 0 5px 10px;}td:last-child{padding-right:10px;}
+input{padding:3px;width:100px;border:1px solid #bbb;outline:0;background:inherit;}input:focus{border-color:#4995e6;}
 .word:hover{background:#eee;}.word:hover .btn-remove{opacity:1;}
-.word.editing{background:#e0e0e0;}.word.editing input{background:white;border-color:#bbb;}.word.editing input:focus{border-color:#4995e6;}
-.word input{border:1px solid rgba(0, 0, 0, 0);outline:0;background:inherit;padding:3px;width:100px;}
+.word.editing{background:#e0e0e0;}.word.editing input{background:white;}
+.word input:not(:focus){border-color:rgba(0, 0, 0, 0);}
 .btn-remove{text-decoration:none;color:#666;opacity:0;}

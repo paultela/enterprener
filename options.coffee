@@ -153,6 +153,24 @@ update = (row) ->
 
 
 
+# Test text box
+
+# Spell checks the target of a change event
+spellcheck = (event) ->
+	target = event.target
+
+	words = target.value.split /\b/
+	fuse = new Fuse words,
+		threshold: 0.3
+
+	for term in dict
+		matches = fuse.search term.search
+		words[match] = (term.correct || term.search) for match in matches
+
+	target.value = words.join ''
+
+
+
 # Startup
 
 # Load words from Chrome's sync storage
@@ -161,4 +179,20 @@ chrome.storage.sync.get (res) ->
 	load res.dictionary
 
 	refresh()
+
+# Execute a function asynchronously
+async = (fn) ->
+	setTimeout ->
+		fn()
+	, 0
+
+# Focusing a textbox selects all text inside of it
+$(document).on 'focus', 'input[type="text"]', (event) ->
+	# Chrome by defualt moves selection to the end on click
+	# Async to select all after Chrome has set selection to end
+	async ->
+		event.target.select()
+
+# Enable spellcheck on the test text box
+$('.test').on 'change', spellcheck
 

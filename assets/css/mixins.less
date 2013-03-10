@@ -1,0 +1,94 @@
+.box-shadow(@x: 0, @y: 0, @blur: 1px, @color: #000) {
+	-webkit-box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	box-shadow: @arguments;
+}
+
+.box-sizing(@mode: border-box) {
+	-webkit-box-sizing: @mode;
+	-moz-box-sizing: @mode;
+	box-sizing: @mode;
+}
+
+.clearfix() {
+	zoom: 1;
+
+	&:before {
+		content: '';
+		display: block;
+	}
+
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+.gradient(@color: #F5F5F5, @start: #EEE, @stop: #FFF) {
+	background: @color;
+	background: -webkit-gradient(linear,
+								left bottom,
+								left top,
+								color-stop(0, @start),
+								color-stop(1, @stop));
+	background: -ms-linear-gradient(bottom,
+									@start,
+									@stop);
+	background: -moz-linear-gradient(center bottom,
+									@start 0%,
+									@stop 100%);
+	filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",@stop,@start));
+}
+
+.grayscale(@pct) {
+    filter: grayscale(@pct); /* Current draft standard */
+    -webkit-filter: grayscale(@pct); /* New WebKit */
+    -moz-filter: grayscale(@pct);
+    -ms-filter: grayscale(@pct);
+    -o-filter: grayscale(@pct); /* Not yet supported in Gecko, Opera or IE */
+    //filter: url(resources.svg#desaturate); /* Gecko */
+    filter: gray; /* IE */
+    //-webkit-filter: grayscale(@pct / 100); /* Old WebKit */
+}
+
+.opacity(@opacity: 0.8) {
+	-webkit-opacity: @opacity;
+	-khtml-opacity: @opacity;
+	-moz-opacity: @opacity;
+	opacity: @opacity;
+}
+
+// Round all corners to the same radius
+.rounded(@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+// Specify radius of individual corners
+.rounded-corners(@top-left: 5px, @top-right: 5px, @bottom-right: 5px, @bottom-left: 5px) {
+    -webkit-border-radius: @arguments;
+    -moz-border-radius: @arguments;
+    border-radius: @arguments;
+}
+
+.text-shadow(@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: @string;
+}
+
+.transition(@property: all, @time: 0.2s, @function: ease-out) {
+	-webkit-transition: @property @time @function;
+	-moz-transition: @property @time @function;
+	-o-transition: @property @time @function;
+	transition: @property @time @function;
+}
+
+// Set the transition propert(y/ies) - specify any number of properties as arguments
+.transition-property(@prop1, @prop2: X, ...) {
+    @props: ~`"@{arguments}".replace(/[\[\]]|\,\sX/g, '')`;
+	-webkit-transition-property: @props;
+	-moz-transition-property: @props;
+	-o-transition-property: @props;
+	transition-property: @props;
+}
