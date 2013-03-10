@@ -6,7 +6,7 @@
 
 # Dictionary management
 
-words = []
+dict = []
 
 # Construct an object representing the most basic word - just a search string
 Word = ->
@@ -21,8 +21,8 @@ load = (dict) ->
 # Get the 0-based index of a word in the words array
 # Checks for match between term and word.search
 find = (term) ->
-	for i in [0...words.length]
-		if words[i].search == term
+	for i in [0...dict.length]
+		if dict[i].search == term
 			return i
 	return -1
 
@@ -31,7 +31,7 @@ find = (term) ->
 add = (word) ->
 	if find(word.search) >= 0
 		return throw "'#{word.search}' is already in the dictionary"
-	words.push word
+	dict.push word
 	$('#dictionary').append events makeRow Word()
 
 
@@ -75,7 +75,7 @@ empty = (row) ->
 refresh = ->
 	tbody = $ '#dictionary'
 	tbody.empty()
-	for word in words
+	for word in dict
 		tbody.append makeRow word
 	tbody.append makeRow Word()
 
@@ -108,13 +108,13 @@ events = (row) ->
 
 # Serialize the words array to Chrome's sync storage
 save = ->
-	chrome.storage.sync.set { dictionary: words }
+	chrome.storage.sync.set { dictionary: dict }
 
 # Remove a word from the dictionary
 undefine = (row) ->
 	console.log 'Deleting "%s"', $(row).data('word')
 	$(row).remove()
-	words.splice(find($(row).data('word')), 1)
+	dict.splice(find($(row).data('word')), 1)
 	save()
 	row
 
@@ -143,7 +143,7 @@ update = (row) ->
 
 	entry = find $(row).data('word')
 	if entry >= 0
-		words[entry] = word
+		dict[entry] = word
 	else
 		add word
 
