@@ -14,9 +14,14 @@ spellcheck = (event) ->
 
 	target.value = words.join ''
 
-chrome.storage.sync.get (res) ->
-	dict = res.dictionary
+load = ->
+	chrome.storage.sync.get (res) ->
+		dict = res.dictionary
 
+# Listen for sync storage change and reload
+chrome.storage.onChanged.addListener load
+
+load()
 document.addEventListener 'change', spellcheck
 ###
 Eventually we'd like to bind to the input event, but as of right now that
